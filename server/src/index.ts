@@ -104,9 +104,10 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`[CivicBridge AI] Backend listening on http://localhost:${PORT}`);
-  console.log(`[CivicBridge AI] Health check: http://localhost:${PORT}/api/health`);
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`[CivicBridge AI] Backend listening on http://${HOST}:${PORT}`);
+  console.log(`[CivicBridge AI] Health check: http://${HOST}:${PORT}/api/health`);
   console.log(`[CivicBridge AI] Gemini API key configured: ${Boolean(process.env.GEMINI_API_KEY)}`);
 });
 
